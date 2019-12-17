@@ -1,6 +1,6 @@
 package com.scc.web.service;
 
-import com.amazonaws.services.s3.model.Bucket;
+import com.scc.web.service.Interfaces.DeleteEntryFromBucket;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,11 +9,12 @@ import java.util.List;
 public class DeleteEntryFromBucketImp implements DeleteEntryFromBucket {
 
     @Override
-    public void deleteEntry(String entry, List<Bucket> bucketList) {
-        for (Bucket bucket : bucketList) {
-            if (bucket.getName().equals(entry)) {
-                bucketList.remove(bucket);
+    public List<String[]> deleteEntry(String entry, List<String[]> list) {
+        for (String[] arr : list) {
+            if (arr[0].equals(entry)) {
+                list.remove(arr);
             }
         }
+        return list;
     }
 }
